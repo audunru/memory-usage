@@ -2,9 +2,7 @@
 
 namespace audunru\MemoryUsage\Helpers;
 
-use audunru\MemoryUsage\Contracts\MemoryHelperContract;
-
-class MemoryHelper implements MemoryHelperContract
+class MemoryHelper
 {
     public function getPeakUsage(): float
     {

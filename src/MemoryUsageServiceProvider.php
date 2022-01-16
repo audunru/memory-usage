@@ -2,7 +2,6 @@
 
 namespace audunru\MemoryUsage;
 
-use audunru\MemoryUsage\Contracts\MemoryHelperContract;
 use audunru\MemoryUsage\Listeners\LogMemoryUsage;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\Facades\Event;
@@ -16,17 +15,6 @@ class MemoryUsageServiceProvider extends PackageServiceProvider
         $package
             ->name('memory-usage')
             ->hasConfigFile();
-    }
-
-    /**
-     * Register any package services.
-     */
-    public function packageRegistered()
-    {
-        $this->app->bind(
-            MemoryHelperContract::class,
-            config('memory-usage.memory-helper')
-        );
     }
 
     /**

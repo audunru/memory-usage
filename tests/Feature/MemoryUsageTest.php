@@ -2,7 +2,7 @@
 
 namespace audunru\MemoryUsage\Tests\Feature;
 
-use audunru\MemoryUsage\Contracts\MemoryHelperContract;
+use audunru\MemoryUsage\Helpers\MemoryHelper;
 use audunru\MemoryUsage\Tests\TestCase;
 use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Log;
@@ -38,7 +38,7 @@ class MemoryUsageTest extends TestCase
 
     public function testItLogsWarningToStackChannel()
     {
-        $this->mock(MemoryHelperContract::class, function (MockInterface $mock) {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
                 ->andReturn(11);
         });
@@ -65,7 +65,7 @@ class MemoryUsageTest extends TestCase
 
     public function testItLogsEmergencyToSlackChannel()
     {
-        $this->mock(MemoryHelperContract::class, function (MockInterface $mock) {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
                 ->andReturn(101);
         });
@@ -92,7 +92,7 @@ class MemoryUsageTest extends TestCase
 
     public function testItExcludesPath()
     {
-        $this->mock(MemoryHelperContract::class, function (MockInterface $mock) {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
                 ->andReturn(1000);
         });

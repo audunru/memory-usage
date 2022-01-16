@@ -2,15 +2,18 @@
 
 namespace audunru\MemoryUsage\Listeners;
 
-use audunru\MemoryUsage\Contracts\MemoryHelperContract;
+use audunru\MemoryUsage\Helpers\MemoryHelper;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 class LogMemoryUsage
 {
-    public function __invoke(RequestHandled $event)
+    public function __construct(protected MemoryHelper $memoryHelper)
+    {
+    }
+
+    public function handle(RequestHandled $event)
     {
         $ignorePatterns = config('memory-usage.ignore_patterns', []);
 
@@ -18,8 +21,7 @@ class LogMemoryUsage
             return;
         }
 
-        $memoryHelper = App::make(MemoryHelperContract::class);
-        $peakUsage = $memoryHelper->getPeakUsage();
+        $peakUsage = $this->memoryHelper->getPeakUsage();
 
         foreach (config('memory-usage.paths', []) as $options) {
             $patterns = Arr::get($options, 'patterns', []);

@@ -1,7 +1,5 @@
 <?php
 
-use audunru\MemoryUsage\Helpers\MemoryHelper;
-
 return [
     /*
      * Enable or disable memory logging.
@@ -49,9 +47,4 @@ return [
      */
     'ignore_patterns' => [
     ],
-
-    /*
-     * Helper class used to get peak memory usage.
-     */
-    'memory-helper' => MemoryHelper::class,
 ];
