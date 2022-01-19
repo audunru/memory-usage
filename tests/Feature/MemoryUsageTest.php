@@ -20,7 +20,7 @@ class MemoryUsageTest extends TestCase
                 [
                     'patterns' => ['include*'],
                     'limit'    => 10,
-                    'channel'  => 'stack',
+                    'channel'  => null,
                     'level'    => 'warning',
                 ],
                 [
@@ -36,7 +36,7 @@ class MemoryUsageTest extends TestCase
         ]);
     }
 
-    public function testItLogsWarningToStackChannel()
+    public function testItLogsWarningToDefaultChannel()
     {
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
@@ -52,7 +52,7 @@ class MemoryUsageTest extends TestCase
         });
 
         Log::shouldReceive('channel')
-            ->with('stack')
+            ->with(null)
             ->once()
             ->andReturn($mockLogger);
 
@@ -78,7 +78,7 @@ class MemoryUsageTest extends TestCase
         });
 
         Log::shouldReceive('channel')
-            ->with('stack')
+            ->with(null)
             ->once()
             ->andReturn($mockLogger);
 

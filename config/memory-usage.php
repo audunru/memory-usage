@@ -23,9 +23,11 @@ return [
             'limit'   => 100,
 
             /*
-             * Log using this channel. See Laravel's logging.php configuration file.
+             * Log using this channel. If set to null, Laravel will use the default channel
+             * from config/logging.php. You can find the other options, like "stederr" or
+             * "syslog" in that file.
              */
-            'channel' => 'stack',
+            'channel' => null,
 
             /* Log using one of these levels:
              *
