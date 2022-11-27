@@ -15,8 +15,8 @@ class MemoryUsageTest extends TestCase
         parent::setUp();
 
         config([
-            'memory-usage.enabled'    => true,
-            'memory-usage.paths'      => [
+            'memory-usage.enabled' => true,
+            'memory-usage.paths'   => [
                 [
                     'patterns' => ['include*'],
                     'limit'    => 10,
@@ -54,15 +54,17 @@ class MemoryUsageTest extends TestCase
 
         $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
             $mock->shouldReceive('log')
+                ->once()
                 ->with('warning', 'Maximum memory 11.00 MiB used during request for /include/test is greater than limit of 10.00 MiB');
             $mock->shouldReceive('log')
+                ->once()
                 ->with('error')
                 ->never();
         });
 
         Log::shouldReceive('channel')
-            ->with(null)
             ->once()
+            ->with(null)
             ->andReturn($mockLogger);
 
         Log::shouldReceive('channel')
@@ -81,19 +83,21 @@ class MemoryUsageTest extends TestCase
 
         $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
             $mock->shouldReceive('log')
+                ->once()
                 ->with('warning', 'Maximum memory 101.00 MiB used during request for /include/test is greater than limit of 10.00 MiB');
             $mock->shouldReceive('log')
+                ->once()
                 ->with('emergency', 'Maximum memory 101.00 MiB used during request for /include/test is greater than limit of 100.00 MiB');
         });
 
         Log::shouldReceive('channel')
-            ->with(null)
             ->once()
+            ->with(null)
             ->andReturn($mockLogger);
 
         Log::shouldReceive('channel')
-            ->with('slack')
             ->once()
+            ->with('slack')
             ->andReturn($mockLogger);
 
         $this->get('/include/test');
@@ -101,11 +105,6 @@ class MemoryUsageTest extends TestCase
 
     public function testItExcludesPath()
     {
-        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getPeakUsage')
-                ->andReturn(1000);
-        });
-
         Log::shouldReceive('channel')->never();
 
         $this->get('/exclude');
