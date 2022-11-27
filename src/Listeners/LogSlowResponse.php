@@ -9,13 +9,38 @@ use Illuminate\Support\Facades\Log;
 
 class LogSlowResponse
 {
+    /**
+     * Default paths where slow responses are ignored.
+     */
+    private const DEFAULT_IGNORE_PATTERNS = [];
+
+    /**
+     * Default paths where memory usage logging is enabled.
+     */
+    private const DEFAULT_PATTERNS = ['*'];
+
+    /**
+     * Default slow response limit.
+     */
+    private const DEFAULT_SLOW_RESPONSE_LIMIT = 30;
+
+    /**
+     * Default log channel.
+     */
+    private const DEFAULT_CHANNEL = null;
+
+    /**
+     * Default log level.
+     */
+    private const DEFAULT_LEVEL = 'warning';
+
     public function __construct(protected TimeHelper $timeHelper)
     {
     }
 
     public function handle(RequestHandled $event)
     {
-        $ignorePatterns = config('memory-usage.ignore_patterns', []);
+        $ignorePatterns = config('memory-usage.ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
 
         if ($event->request->is($ignorePatterns)) {
             return;
@@ -24,12 +49,12 @@ class LogSlowResponse
         $responseTime = $this->timeHelper->getResponseTime();
 
         foreach (config('memory-usage.paths', []) as $options) {
-            $patterns = Arr::get($options, 'patterns', []);
-            $slowResponseLimit = Arr::get($options, 'slow_response_limit', 1);
+            $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
+            $slowResponseLimit = Arr::get($options, 'slow_response_limit', self::DEFAULT_SLOW_RESPONSE_LIMIT);
 
             if ($responseTime > $slowResponseLimit && $event->request->is($patterns)) {
-                $channel = Arr::get($options, 'channel', null);
-                $level = Arr::get($options, 'level', 'warning');
+                $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
+                $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
                 Log::channel($channel)->log($level, sprintf('Response time %01.2f s for %s is greater than limit of %01.2f s', $responseTime, $event->request->getPathInfo(), $slowResponseLimit));
             }
