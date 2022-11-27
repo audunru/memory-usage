@@ -29,6 +29,15 @@ class MemoryUsageTest extends TestCase
                     'channel'  => 'slack',
                     'level'    => 'emergency',
                 ],
+                [
+                    'patterns' => ['header*'],
+                    'limit'    => 10,
+                    'channel'  => null,
+                    'level'    => 'warning',
+                    'header'   => [
+                        'environments' => ['testing'],
+                    ],
+                ],
             ],
             'memory-usage.ignore_patterns' => [
                 'ignore*',
@@ -107,6 +116,25 @@ class MemoryUsageTest extends TestCase
         Log::shouldReceive('channel')->never();
 
         $this->get('/ignore');
+    }
+
+    public function testItAddsHeaderToResponse()
+    {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getPeakUsage')
+                ->andReturn(1);
+        });
+
+        $response = $this->get('/header');
+
+        $response->assertHeader('memory-usage', '1');
+    }
+
+    public function testItDoesNotAddHeaderToResponse()
+    {
+        $response = $this->get('/no-header');
+
+        $response->assertHeaderMissing('memory-usage');
     }
 
     // TODO: Service provider has already loaded and enabled the listener

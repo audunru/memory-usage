@@ -39,10 +39,23 @@ return [
              * - notice
              * - info
              * - debug
-            */
+             */
             'level'   => 'warning',
+
+            'header' => [
+                /*
+                 * Environments where memory usage will be added as a header in the response.
+                 * Set this to ['local'] to enable the header during development.
+                 */
+                'environments' => [],
+            ],
         ],
     ],
+
+    /*
+     * header name added to response
+     */
+    'header_name' => 'memory-usage',
 
     /*
      * Paths to always ignore.
