@@ -10,13 +10,48 @@ use Illuminate\Support\Facades\Log;
 
 class LogMemoryUsage
 {
+    /**
+     * Default paths where memory usage is ignored.
+     */
+    private const DEFAULT_IGNORE_PATTERNS = [];
+
+    /**
+     * Default paths where memory usage logging is enabled.
+     */
+    private const DEFAULT_PATTERNS = ['*'];
+
+    /**
+     * Default memory usage limit.
+     */
+    private const DEFAULT_LIMIT = 100;
+
+    /**
+     * Default log channel.
+     */
+    private const DEFAULT_CHANNEL = null;
+
+    /**
+     * Default log level.
+     */
+    private const DEFAULT_LEVEL = 'warning';
+
+    /**
+     * Default environments where memory usage header is added to responses.
+     */
+    private const DEFAULT_ENVIRONMENTS = [];
+
+    /**
+     * Default memory usage header name.
+     */
+    private const DEFAULT_HEADER_NAME = 'memory-usage';
+
     public function __construct(protected MemoryHelper $memoryHelper)
     {
     }
 
     public function handle(RequestHandled $event)
     {
-        $ignorePatterns = config('memory-usage.ignore_patterns', []);
+        $ignorePatterns = config('memory-usage.ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
 
         if ($event->request->is($ignorePatterns)) {
             return;
@@ -25,21 +60,21 @@ class LogMemoryUsage
         $peakUsage = $this->memoryHelper->getPeakUsage();
 
         foreach (config('memory-usage.paths', []) as $options) {
-            $patterns = Arr::get($options, 'patterns', []);
-            $limit = Arr::get($options, 'limit', 0);
+            $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
+            $limit = Arr::get($options, 'limit', self::DEFAULT_LIMIT);
 
             if ($peakUsage > $limit && $event->request->is($patterns)) {
-                $channel = Arr::get($options, 'channel', null);
-                $level = Arr::get($options, 'level', 'warning');
+                $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
+                $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
                 Log::channel($channel)->log($level, sprintf('Maximum memory %01.2f MiB used during request for %s is greater than limit of %01.2f MiB', $peakUsage, $event->request->getPathInfo(), $limit));
             }
 
-            $environments = Arr::get($options, 'header.environments', []);
+            $environments = Arr::get($options, 'header.environments', self::DEFAULT_ENVIRONMENTS);
             $headerIsEnabledInEnvironment = App::environment($environments);
 
             if ($event->request->is($patterns) && $headerIsEnabledInEnvironment) {
-                $headerName = config('memory-usage.header_name', 'memory-usage');
+                $headerName = config('memory-usage.header_name', self::DEFAULT_HEADER_NAME);
 
                 $event->response->headers->set($headerName, $peakUsage);
             }
