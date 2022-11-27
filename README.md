@@ -14,6 +14,12 @@ The memory limit is configurable per request path. If you set the limit to 25 Mi
 [2022-01-16 10:49:29] local.WARNING: Maximum memory 60.04 MiB used during request for /api/v1/companies/1/sales is greater than limit of 25.00 MiB
 ```
 
+Since v0.3.0 you can also log slow responses. If you set the limit to 3 seconds, you you will see something like this in your logs:
+
+```
+[2022-01-16 10:49:17] local.WARNING: Response time 5.15 s for /api/v1/companies/1/products is greater than limit of 3.00 s
+```
+
 # Installation
 
 ## Step 1: Install with Composer
