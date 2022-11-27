@@ -7,6 +7,11 @@ return [
     'enabled' => env('MEMORY_USAGE_ENABLED', true),
 
     /*
+     * Enable or disable slow response logging.
+     */
+    'slow_response_enabled' => env('SLOW_RESPONSE_ENABLED', true),
+
+    /*
      * Paths to log memory usage for.
      */
     'paths'   => [
@@ -21,6 +26,11 @@ return [
              * Peak memory usage in megabytes must be above limit before logging takes place.
              */
             'limit'   => 100,
+
+            /*
+             * Response time in seconds must be above limit before logging takes place.
+             */
+            'slow_response_limit'   => 30.0,
 
             /*
              * Log using this channel. If set to null, Laravel will use the default channel
@@ -53,7 +63,7 @@ return [
     ],
 
     /*
-     * header name added to response
+     * header name added to response if enabled.
      */
     'header_name' => 'memory-usage',
 
