@@ -18,23 +18,40 @@ class MemoryUsageTest extends TestCase
             'memory-usage.enabled' => true,
             'memory-usage.paths'   => [
                 [
-                    'patterns' => ['include*'],
-                    'limit'    => 10,
-                    'channel'  => null,
-                    'level'    => 'warning',
+                    'patterns'        => ['include*'],
+                    'ignore_patterns' => ['include/higher*', 'include/lower*'],
+                    'limit'           => 10,
+                    'channel'         => null,
+                    'level'           => 'warning',
                 ],
                 [
-                    'patterns' => ['include*'],
-                    'limit'    => 100,
-                    'channel'  => 'slack',
-                    'level'    => 'emergency',
+                    'patterns'        => ['include/higher'],
+                    'ignore_patterns' => [],
+                    'limit'           => 50,
+                    'channel'         => null,
+                    'level'           => 'warning',
                 ],
                 [
-                    'patterns' => ['header*'],
-                    'limit'    => 10,
-                    'channel'  => null,
-                    'level'    => 'warning',
-                    'header'   => [
+                    'patterns'        => ['include/lower'],
+                    'ignore_patterns' => [],
+                    'limit'           => 1,
+                    'channel'         => null,
+                    'level'           => 'warning',
+                ],
+                [
+                    'patterns'        => ['include*'],
+                    'ignore_patterns' => [],
+                    'limit'           => 100,
+                    'channel'         => 'slack',
+                    'level'           => 'emergency',
+                ],
+                [
+                    'patterns'        => ['header*'],
+                    'ignore_patterns' => [],
+                    'limit'           => 10,
+                    'channel'         => null,
+                    'level'           => 'warning',
+                    'header'          => [
                         'environments' => ['testing'],
                     ],
                 ],
@@ -72,6 +89,64 @@ class MemoryUsageTest extends TestCase
             ->never();
 
         $this->get('/include/test');
+    }
+
+    public function testItLogsWarningToDefaultChannelForHigherLimitRoute()
+    {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getPeakUsage')
+                ->andReturn(51);
+        });
+
+        $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
+            $mock->shouldReceive('log')
+                ->once()
+                ->with('warning', 'Maximum memory 51.00 MiB used during request for /include/higher is greater than limit of 50.00 MiB');
+            $mock->shouldReceive('log')
+                ->once()
+                ->with('error')
+                ->never();
+        });
+
+        Log::shouldReceive('channel')
+            ->once()
+            ->with(null)
+            ->andReturn($mockLogger);
+
+        Log::shouldReceive('channel')
+            ->with('slack')
+            ->never();
+
+        $this->get('/include/higher');
+    }
+
+    public function testItLogsWarningToDefaultChannelForLowerLimitRoute()
+    {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getPeakUsage')
+                ->andReturn(2);
+        });
+
+        $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
+            $mock->shouldReceive('log')
+                ->once()
+                ->with('warning', 'Maximum memory 2.00 MiB used during request for /include/lower is greater than limit of 1.00 MiB');
+            $mock->shouldReceive('log')
+                ->once()
+                ->with('error')
+                ->never();
+        });
+
+        Log::shouldReceive('channel')
+            ->once()
+            ->with(null)
+            ->andReturn($mockLogger);
+
+        Log::shouldReceive('channel')
+            ->with('slack')
+            ->never();
+
+        $this->get('/include/lower');
     }
 
     public function testItLogsEmergencyToSlackChannel()

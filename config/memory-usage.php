@@ -23,6 +23,11 @@ return [
             'patterns'   => ['*'],
 
             /*
+             * Paths to ignore. Takes precedence over the 'patterns' option.
+             */
+            'ignore_patterns' => [],
+
+            /*
              * Peak memory usage in megabytes must be above limit before logging takes place.
              */
             'limit'   => 100,

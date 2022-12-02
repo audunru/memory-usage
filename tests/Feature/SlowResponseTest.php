@@ -19,15 +19,32 @@ class SlowResponseTest extends TestCase
             'memory-usage.paths' => [
                 [
                     'patterns'            => ['include*'],
+                    'ignore_patterns'     => ['include/higher*', 'include/lower*'],
                     'limit'               => 10,
                     'slow_response_limit' => 3,
                     'channel'             => null,
                     'level'               => 'warning',
                 ],
                 [
+                    'patterns'            => ['include/higher'],
+                    'ignore_patterns'     => [],
+                    'limit'               => 10,
+                    'slow_response_limit' => 15,
+                    'channel'             => null,
+                    'level'               => 'warning',
+                ],
+                [
+                    'patterns'            => ['include/lower'],
+                    'ignore_patterns'     => [],
+                    'limit'               => 10,
+                    'slow_response_limit' => 1,
+                    'channel'             => null,
+                    'level'               => 'warning',
+                ],
+                [
                     'patterns'            => ['include*'],
                     'limit'               => 10,
-                    'slow_response_limit' => 10,
+                    'slow_response_limit' => 30,
                     'channel'             => 'slack',
                     'level'               => 'emergency',
                 ],
@@ -72,20 +89,76 @@ class SlowResponseTest extends TestCase
         $this->get('/include/test');
     }
 
-    public function testItLogsSlowResponseEmergencyToSlackChannel()
+    public function testItLogsSlowResponseWarningToDefaultChannelForHigherLimitRoute()
     {
         $this->mock(TimeHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getResponseTime')
-                ->andReturn(11);
+                ->andReturn(16);
         });
 
         $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
             $mock->shouldReceive('log')
                 ->once()
-                ->with('warning', 'Response time 11.00 s for /include/test is greater than limit of 3.00 s');
+                ->with('warning', 'Response time 16.00 s for /include/higher is greater than limit of 15.00 s');
+            $mock->shouldReceive('log')
+                ->with('error')
+                ->never();
+        });
+
+        Log::shouldReceive('channel')
+            ->once()
+            ->with(null)
+            ->andReturn($mockLogger);
+
+        Log::shouldReceive('channel')
+            ->with('slack')
+            ->never();
+
+        $this->get('/include/higher');
+    }
+
+    public function testItLogsSlowResponseWarningToDefaultChannelForLowerLimitRoute()
+    {
+        $this->mock(TimeHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getResponseTime')
+                ->andReturn(2);
+        });
+
+        $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
             $mock->shouldReceive('log')
                 ->once()
-                ->with('emergency', 'Response time 11.00 s for /include/test is greater than limit of 10.00 s');
+                ->with('warning', 'Response time 2.00 s for /include/lower is greater than limit of 1.00 s');
+            $mock->shouldReceive('log')
+                ->with('error')
+                ->never();
+        });
+
+        Log::shouldReceive('channel')
+            ->once()
+            ->with(null)
+            ->andReturn($mockLogger);
+
+        Log::shouldReceive('channel')
+            ->with('slack')
+            ->never();
+
+        $this->get('/include/lower');
+    }
+
+    public function testItLogsSlowResponseEmergencyToSlackChannel()
+    {
+        $this->mock(TimeHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getResponseTime')
+                ->andReturn(31);
+        });
+
+        $mockLogger = $this->mock(Logger::class, function (MockInterface $mock) {
+            $mock->shouldReceive('log')
+                ->once()
+                ->with('warning', 'Response time 31.00 s for /include/test is greater than limit of 3.00 s');
+            $mock->shouldReceive('log')
+                ->once()
+                ->with('emergency', 'Response time 31.00 s for /include/test is greater than limit of 30.00 s');
         });
 
         Log::shouldReceive('channel')

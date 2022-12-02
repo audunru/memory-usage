@@ -61,9 +61,10 @@ class LogMemoryUsage
 
         foreach (config('memory-usage.paths', []) as $options) {
             $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
+            $ignorePatternsForPath = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
             $limit = Arr::get($options, 'limit', self::DEFAULT_LIMIT);
 
-            if ($peakUsage > $limit && $event->request->is($patterns)) {
+            if ($peakUsage > $limit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
                 $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
                 $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
