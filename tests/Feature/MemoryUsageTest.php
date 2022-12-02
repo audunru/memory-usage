@@ -3,6 +3,7 @@
 namespace audunru\MemoryUsage\Tests\Feature;
 
 use audunru\MemoryUsage\Helpers\MemoryHelper;
+use audunru\MemoryUsage\Helpers\TimeHelper;
 use audunru\MemoryUsage\Tests\TestCase;
 use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Log;
@@ -60,6 +61,11 @@ class MemoryUsageTest extends TestCase
                 'ignore*',
             ],
         ]);
+
+        $this->mock(TimeHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getResponseTime')
+                ->andReturn(1000);
+        });
     }
 
     public function testItLogsWarningToDefaultChannel()

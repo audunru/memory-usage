@@ -17,12 +17,7 @@ class LogSlowResponse
     /**
      * Default paths where memory usage logging is enabled.
      */
-    private const DEFAULT_PATTERNS = ['*'];
-
-    /**
-     * Default slow response limit.
-     */
-    private const DEFAULT_SLOW_RESPONSE_LIMIT = 30;
+    private const DEFAULT_PATTERNS = [];
 
     /**
      * Default log channel.
@@ -51,9 +46,9 @@ class LogSlowResponse
         foreach (config('memory-usage.paths', []) as $options) {
             $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
             $ignorePatternsForPath = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
-            $slowResponseLimit = Arr::get($options, 'slow_response_limit', self::DEFAULT_SLOW_RESPONSE_LIMIT);
+            $slowResponseLimit = Arr::get($options, 'slow_response_limit');
 
-            if ($responseTime > $slowResponseLimit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
+            if (! is_null($slowResponseLimit) && $responseTime > $slowResponseLimit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
                 $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
                 $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 

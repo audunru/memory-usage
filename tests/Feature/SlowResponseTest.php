@@ -20,7 +20,6 @@ class SlowResponseTest extends TestCase
                 [
                     'patterns'            => ['include*'],
                     'ignore_patterns'     => ['include/higher*', 'include/lower*'],
-                    'limit'               => 10,
                     'slow_response_limit' => 3,
                     'channel'             => null,
                     'level'               => 'warning',
@@ -28,7 +27,6 @@ class SlowResponseTest extends TestCase
                 [
                     'patterns'            => ['include/higher'],
                     'ignore_patterns'     => [],
-                    'limit'               => 10,
                     'slow_response_limit' => 15,
                     'channel'             => null,
                     'level'               => 'warning',
@@ -36,14 +34,13 @@ class SlowResponseTest extends TestCase
                 [
                     'patterns'            => ['include/lower'],
                     'ignore_patterns'     => [],
-                    'limit'               => 10,
                     'slow_response_limit' => 1,
                     'channel'             => null,
                     'level'               => 'warning',
                 ],
                 [
                     'patterns'            => ['include*'],
-                    'limit'               => 10,
+                    'ignore_patterns'     => [],
                     'slow_response_limit' => 30,
                     'channel'             => 'slack',
                     'level'               => 'emergency',
@@ -54,10 +51,9 @@ class SlowResponseTest extends TestCase
             ],
         ]);
 
-        // Exclude memory usage logging when testing slow responses
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
-                ->andReturn(0);
+                ->andReturn(1000);
         });
     }
 
