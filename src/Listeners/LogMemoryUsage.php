@@ -18,12 +18,7 @@ class LogMemoryUsage
     /**
      * Default paths where memory usage logging is enabled.
      */
-    private const DEFAULT_PATTERNS = ['*'];
-
-    /**
-     * Default memory usage limit.
-     */
-    private const DEFAULT_LIMIT = 100;
+    private const DEFAULT_PATTERNS = [];
 
     /**
      * Default log channel.
@@ -62,9 +57,9 @@ class LogMemoryUsage
         foreach (config('memory-usage.paths', []) as $options) {
             $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
             $ignorePatternsForPath = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
-            $limit = Arr::get($options, 'limit', self::DEFAULT_LIMIT);
+            $limit = Arr::get($options, 'limit');
 
-            if ($peakUsage > $limit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
+            if (! is_null($limit) && $peakUsage > $limit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
                 $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
                 $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
