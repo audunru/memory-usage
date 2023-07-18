@@ -45,10 +45,10 @@ class LogSlowResponse
 
         foreach (config('memory-usage.paths', []) as $options) {
             $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
-            $ignorePatternsForPath = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
+            $ignorePaths = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
             $slowResponseLimit = Arr::get($options, 'slow_response_limit');
 
-            if (! is_null($slowResponseLimit) && $responseTime > $slowResponseLimit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
+            if (! is_null($slowResponseLimit) && $responseTime > $slowResponseLimit && $event->request->is($patterns) && ! $event->request->is($ignorePaths)) {
                 $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
                 $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
