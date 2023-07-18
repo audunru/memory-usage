@@ -56,10 +56,10 @@ class LogMemoryUsage
 
         foreach (config('memory-usage.paths', []) as $options) {
             $patterns = Arr::get($options, 'patterns', self::DEFAULT_PATTERNS);
-            $ignorePatternsForPath = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
+            $ignorePaths = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
             $limit = Arr::get($options, 'limit');
 
-            if (! is_null($limit) && $peakUsage > $limit && $event->request->is($patterns) && ! $event->request->is($ignorePatternsForPath)) {
+            if (! is_null($limit) && $peakUsage > $limit && $event->request->is($patterns) && ! $event->request->is($ignorePaths)) {
                 $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
                 $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
@@ -67,9 +67,9 @@ class LogMemoryUsage
             }
 
             $environments = Arr::get($options, 'header.environments', self::DEFAULT_ENVIRONMENTS);
-            $headerIsEnabledInEnvironment = App::environment($environments);
+            $isEnabled = App::environment($environments);
 
-            if ($event->request->is($patterns) && $headerIsEnabledInEnvironment) {
+            if ($event->request->is($patterns) && $isEnabled) {
                 $headerName = config('memory-usage.header_name', self::DEFAULT_HEADER_NAME);
 
                 $event->response->headers->set($headerName, $peakUsage);

@@ -1,6 +1,6 @@
 # Log Laravel Memory usage
 
-[![Build Status](https://app.travis-ci.com/audunru/memory-usage.svg?branch=master)](https://app.travis-ci.com/audunru/memory-usage)
+[![Build Status](https://github.com/audunru/memory-usage/actions/workflows/validate.yml/badge.svg)](https://github.com/audunru/memory-usage/actions/workflows/validate.yml)
 [![Coverage Status](https://coveralls.io/repos/github/audunru/memory-usage/badge.svg?branch=master)](https://coveralls.io/github/audunru/memory-usage?branch=master)
 [![StyleCI](https://github.styleci.io/repos/448512424/shield?branch=master)](https://github.styleci.io/repos/448512424)
 

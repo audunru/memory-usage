@@ -1,6 +1,6 @@
 <?php
 
-namespace audunru\MemoryUsage\Tests\Feature;
+namespace audunru\MemoryUsage\Tests\Unit;
 
 use audunru\MemoryUsage\Helpers\TimeHelper;
 use audunru\MemoryUsage\Tests\TestCase;
