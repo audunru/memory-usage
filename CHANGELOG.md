@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/audunru/memory-usage/compare/v1.0.1...v2.0.0) (2024-04-07)
+
+
+### Features
+
+* laravel 11 support ([#8](https://github.com/audunru/memory-usage/issues/8)) ([0b81a0b](https://github.com/audunru/memory-usage/commit/0b81a0bd4523e04c7bb341b9aa357cd6dcb9b442))
+
+
+### Miscellaneous Chores
+
+* release 2.0.0 ([35ee138](https://github.com/audunru/memory-usage/commit/35ee138abb674e8473fe77ceae296ba292f14f8f))
+
 ## [1.0.1](https://github.com/audunru/memory-usage/compare/v1.0.0...v1.0.1) (2024-04-07)
 
 
