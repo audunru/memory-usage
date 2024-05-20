@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/audunru/memory-usage/compare/v2.0.0...v2.0.1) (2024-05-20)
+
+
+### Miscellaneous Chores
+
+* parallel php-cs-fixer ([2cabbc2](https://github.com/audunru/memory-usage/commit/2cabbc2fe18e0574ee2532dd9d6726a55f7a10ff))
+* update dependencies ([5384e59](https://github.com/audunru/memory-usage/commit/5384e59da544e7876b1674e6ec62750991164151))
+
 ## [2.0.0](https://github.com/audunru/memory-usage/compare/v1.0.1...v2.0.0) (2024-04-07)
 
 
