@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/audunru/memory-usage/compare/v2.0.1...v2.0.2) (2024-07-16)
+
+
+### Miscellaneous Chores
+
+* update dependencies ([7d2c9f9](https://github.com/audunru/memory-usage/commit/7d2c9f9022f0b9d254162473ea5e85bb93e95019))
+
 ## [2.0.1](https://github.com/audunru/memory-usage/compare/v2.0.0...v2.0.1) (2024-05-20)
 
 
