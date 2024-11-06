@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/audunru/memory-usage/compare/v2.0.2...v2.0.3) (2024-11-06)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump symfony/http-foundation ([#13](https://github.com/audunru/memory-usage/issues/13)) ([80b726f](https://github.com/audunru/memory-usage/commit/80b726f41c235fb86b4ddcbf69724fe95b2701b8))
+
 ## [2.0.2](https://github.com/audunru/memory-usage/compare/v2.0.1...v2.0.2) (2024-08-25)
 
 
