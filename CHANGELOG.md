@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/audunru/memory-usage/compare/v2.0.3...v2.0.4) (2024-11-06)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump symfony/process ([#15](https://github.com/audunru/memory-usage/issues/15)) ([84ec05d](https://github.com/audunru/memory-usage/commit/84ec05dd5d0e063db941e3b2e46ec3ee8f38880a))
+
 ## [2.0.3](https://github.com/audunru/memory-usage/compare/v2.0.2...v2.0.3) (2024-11-06)
 
 
