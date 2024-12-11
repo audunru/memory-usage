@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.5](https://github.com/audunru/memory-usage/compare/v2.0.4...v2.0.5) (2024-12-10)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump laravel/framework ([#17](https://github.com/audunru/memory-usage/issues/17)) ([07e9d3d](https://github.com/audunru/memory-usage/commit/07e9d3d6c3f138d0a93610c52105dfd670329b7d))
+* **deps:** bump league/commonmark ([#19](https://github.com/audunru/memory-usage/issues/19)) ([fc0b1b4](https://github.com/audunru/memory-usage/commit/fc0b1b4317c35db8dbefa9f872131d2ed25e72c0))
+
 ## [2.0.4](https://github.com/audunru/memory-usage/compare/v2.0.3...v2.0.4) (2024-11-06)
 
 
