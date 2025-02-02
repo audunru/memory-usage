@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.6](https://github.com/audunru/memory-usage/compare/v2.0.5...v2.0.6) (2025-02-01)
+
+
+### Miscellaneous Chores
+
+* dependabot config ([4c3551a](https://github.com/audunru/memory-usage/commit/4c3551a9e6f3477ef023844469942a73d4b45bab))
+* **deps-dev:** bump orchestra/testbench from 9.2.0 to 9.9.0 ([#22](https://github.com/audunru/memory-usage/issues/22)) ([f4f2cbb](https://github.com/audunru/memory-usage/commit/f4f2cbb00f6e70242d695c9b7c8a688c32fbb013))
+* **deps:** bump laravel/framework from 11.31.0 to 11.41.3 ([#21](https://github.com/audunru/memory-usage/issues/21)) ([7572210](https://github.com/audunru/memory-usage/commit/757221066ccb3864920b9b4df7cce7dadab7b238))
+
 ## [2.0.5](https://github.com/audunru/memory-usage/compare/v2.0.4...v2.0.5) (2024-12-10)
 
 
