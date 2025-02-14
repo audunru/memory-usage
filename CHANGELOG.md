@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.7](https://github.com/audunru/memory-usage/compare/v2.0.6...v2.0.7) (2025-02-14)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump spatie/laravel-package-tools from 1.18.3 to 1.19.0 ([#25](https://github.com/audunru/memory-usage/issues/25)) ([4961835](https://github.com/audunru/memory-usage/commit/49618354d37b6290456fb732b7ab22807ad309f9))
+
 ## [2.0.6](https://github.com/audunru/memory-usage/compare/v2.0.5...v2.0.6) (2025-02-01)
 
 
