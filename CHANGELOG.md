@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.8](https://github.com/audunru/memory-usage/compare/v2.0.7...v2.0.8) (2025-02-17)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer from 3.68.5 to 3.69.0 ([#28](https://github.com/audunru/memory-usage/issues/28)) ([3b39cde](https://github.com/audunru/memory-usage/commit/3b39cde39433523d6c63f70f68964c23daf50e9b))
+* **deps-dev:** bump orchestra/testbench from 9.9.0 to 9.10.0 ([#27](https://github.com/audunru/memory-usage/issues/27)) ([1bed8a9](https://github.com/audunru/memory-usage/commit/1bed8a9719bb41f913d04b19864c9863446d0cb4))
+
 ## [2.0.7](https://github.com/audunru/memory-usage/compare/v2.0.6...v2.0.7) (2025-02-14)
 
 
