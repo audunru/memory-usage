@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.8](https://github.com/audunru/memory-usage/compare/v2.0.7...v2.0.8) (2025-03-07)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#32](https://github.com/audunru/memory-usage/issues/32)) ([5c7ef94](https://github.com/audunru/memory-usage/commit/5c7ef94e51bfe221ecd943f0020307a26213b995))
+* **deps-dev:** bump friendsofphp/php-cs-fixer from 3.68.5 to 3.69.0 ([#28](https://github.com/audunru/memory-usage/issues/28)) ([3b39cde](https://github.com/audunru/memory-usage/commit/3b39cde39433523d6c63f70f68964c23daf50e9b))
+* **deps-dev:** bump orchestra/testbench from 9.9.0 to 9.10.0 ([#27](https://github.com/audunru/memory-usage/issues/27)) ([1bed8a9](https://github.com/audunru/memory-usage/commit/1bed8a9719bb41f913d04b19864c9863446d0cb4))
+* **deps-dev:** bump the development-dependencies group with 3 updates ([#31](https://github.com/audunru/memory-usage/issues/31)) ([5e5f13e](https://github.com/audunru/memory-usage/commit/5e5f13e795bb98e84490215dd2a87ea04bda52bd))
+* **deps:** bump laravel/framework in the composer group ([#33](https://github.com/audunru/memory-usage/issues/33)) ([a793b22](https://github.com/audunru/memory-usage/commit/a793b227e41fc9b3698df632d7776b417faf38fa))
+* **deps:** bump laravel/framework in the production-dependencies group ([#30](https://github.com/audunru/memory-usage/issues/30)) ([cd9f040](https://github.com/audunru/memory-usage/commit/cd9f040d2c0f5b41fe46fac6f61aaef4f90699a9))
+
 ## [2.0.7](https://github.com/audunru/memory-usage/compare/v2.0.6...v2.0.7) (2025-02-14)
 
 
