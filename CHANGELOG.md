@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.9](https://github.com/audunru/memory-usage/compare/v2.0.8...v2.0.9) (2025-03-10)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#34](https://github.com/audunru/memory-usage/issues/34)) ([574c065](https://github.com/audunru/memory-usage/commit/574c06533a98347c2c108fab34004e4a1f1b0dd7))
+
 ## [2.0.8](https://github.com/audunru/memory-usage/compare/v2.0.7...v2.0.8) (2025-03-07)
 
 
