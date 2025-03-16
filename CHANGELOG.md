@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/audunru/memory-usage/compare/v2.0.8...v3.0.0) (2025-03-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* laravel 12 support ([#38](https://github.com/audunru/memory-usage/issues/38))
+
+### Features
+
+* laravel 12 support ([#38](https://github.com/audunru/memory-usage/issues/38)) ([299d3c5](https://github.com/audunru/memory-usage/commit/299d3c54f4989fe3b9e13555fa60441785160964))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#34](https://github.com/audunru/memory-usage/issues/34)) ([574c065](https://github.com/audunru/memory-usage/commit/574c06533a98347c2c108fab34004e4a1f1b0dd7))
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#36](https://github.com/audunru/memory-usage/issues/36)) ([8627d66](https://github.com/audunru/memory-usage/commit/8627d66808bd126628a3ed27734dde4af82b1b88))
+* rename master branch to main ([28c2f90](https://github.com/audunru/memory-usage/commit/28c2f903891cc09550ed37daecbf0453c493ff6b))
+
 ## [2.0.8](https://github.com/audunru/memory-usage/compare/v2.0.7...v2.0.8) (2025-03-07)
 
 
