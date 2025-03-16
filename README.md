@@ -1,8 +1,8 @@
 # Log Laravel Memory usage
 
 [![Build Status](https://github.com/audunru/memory-usage/actions/workflows/validate.yml/badge.svg)](https://github.com/audunru/memory-usage/actions/workflows/validate.yml)
-[![Coverage Status](https://coveralls.io/repos/github/audunru/memory-usage/badge.svg?branch=master)](https://coveralls.io/github/audunru/memory-usage?branch=master)
-[![StyleCI](https://github.styleci.io/repos/448512424/shield?branch=master)](https://github.styleci.io/repos/448512424)
+[![Coverage Status](https://coveralls.io/repos/github/audunru/memory-usage/badge.svg?branch=main)](https://coveralls.io/github/audunru/memory-usage?branch=main)
+[![StyleCI](https://github.styleci.io/repos/448512424/shield?branch=main)](https://github.styleci.io/repos/448512424)
 
 Log amount of memory used during HTTP requests. The peak memory usage in megabytes will be logged right before the response is returned.
 
