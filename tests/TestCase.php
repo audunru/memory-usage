@@ -7,15 +7,6 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        if (! defined('LARAVEL_START')) {
-            define('LARAVEL_START', microtime(true));
-        }
-    }
-
     /**
      * @SuppressWarnings("unused")
      */
