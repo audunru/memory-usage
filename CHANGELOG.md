@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/audunru/memory-usage/compare/v3.0.0...v4.0.0) (2025-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* laravel octane support ([#40](https://github.com/audunru/memory-usage/issues/40))
+
+### Features
+
+* laravel octane support ([#40](https://github.com/audunru/memory-usage/issues/40)) ([a768d53](https://github.com/audunru/memory-usage/commit/a768d53803c1d4ebd1d57e33116351c4d81c71c4))
+
 ## [3.0.0](https://github.com/audunru/memory-usage/compare/v2.0.8...v3.0.0) (2025-03-16)
 
 
