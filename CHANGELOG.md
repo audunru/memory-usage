@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/audunru/memory-usage/compare/v4.0.0...v4.0.1) (2025-04-01)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#43](https://github.com/audunru/memory-usage/issues/43)) ([dbf56ec](https://github.com/audunru/memory-usage/commit/dbf56ecd863d0c6c6bf4983aa3c7b8f272bed4e8))
+* **deps:** bump the production-dependencies group with 2 updates ([#42](https://github.com/audunru/memory-usage/issues/42)) ([c46b0fd](https://github.com/audunru/memory-usage/commit/c46b0fd8de65d5cebdcbcabb6da0dbf1225476d8))
+
 ## [4.0.0](https://github.com/audunru/memory-usage/compare/v3.0.0...v4.0.0) (2025-03-22)
 
 
