@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.1](https://github.com/audunru/memory-usage/compare/v4.0.0...v4.0.1) (2025-06-07)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#43](https://github.com/audunru/memory-usage/issues/43)) ([dbf56ec](https://github.com/audunru/memory-usage/commit/dbf56ecd863d0c6c6bf4983aa3c7b8f272bed4e8))
+* **deps-dev:** bump the development-dependencies group across 1 directory with 3 updates ([#48](https://github.com/audunru/memory-usage/issues/48)) ([48ccfd2](https://github.com/audunru/memory-usage/commit/48ccfd29e05b6aaf9a5bb0311ae41c4f10288e0f))
+* **deps:** bump laravel/framework in the production-dependencies group ([#49](https://github.com/audunru/memory-usage/issues/49)) ([821f204](https://github.com/audunru/memory-usage/commit/821f204955b34a7a59f64705e6ac51f0c2bab6e3))
+* **deps:** bump league/commonmark in the composer group ([#47](https://github.com/audunru/memory-usage/issues/47)) ([727d03c](https://github.com/audunru/memory-usage/commit/727d03c1d3a303a55fe283e53b125632b577d731))
+* **deps:** bump the production-dependencies group with 2 updates ([#42](https://github.com/audunru/memory-usage/issues/42)) ([c46b0fd](https://github.com/audunru/memory-usage/commit/c46b0fd8de65d5cebdcbcabb6da0dbf1225476d8))
+* **deps:** bump the production-dependencies group with 2 updates ([#45](https://github.com/audunru/memory-usage/issues/45)) ([f0dff0e](https://github.com/audunru/memory-usage/commit/f0dff0eee347de64898de0381a744b96eb4a02b8))
+
 ## [4.0.0](https://github.com/audunru/memory-usage/compare/v3.0.0...v4.0.0) (2025-03-22)
 
 
