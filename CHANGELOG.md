@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.2](https://github.com/audunru/memory-usage/compare/v4.0.1...v4.0.2) (2025-07-03)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump the development-dependencies group with 3 updates ([#50](https://github.com/audunru/memory-usage/issues/50)) ([6c481e6](https://github.com/audunru/memory-usage/commit/6c481e6651d6edf6f840f796b690b84b15011a5b))
+
 ## [4.0.1](https://github.com/audunru/memory-usage/compare/v4.0.0...v4.0.1) (2025-06-07)
 
 
