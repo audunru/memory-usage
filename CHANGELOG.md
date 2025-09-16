@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.0.2](https://github.com/audunru/memory-usage/compare/v4.0.1...v4.0.2) (2025-09-16)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#54](https://github.com/audunru/memory-usage/issues/54)) ([1e1af54](https://github.com/audunru/memory-usage/commit/1e1af545602739c4b2edcd9778d5a10632671886))
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#60](https://github.com/audunru/memory-usage/issues/60)) ([e2ecc92](https://github.com/audunru/memory-usage/commit/e2ecc92008d046ef536c96f0740398cd35c1b316))
+* **deps-dev:** bump the development-dependencies group with 3 updates ([#50](https://github.com/audunru/memory-usage/issues/50)) ([6c481e6](https://github.com/audunru/memory-usage/commit/6c481e6651d6edf6f840f796b690b84b15011a5b))
+* **deps-dev:** bump the development-dependencies group with 3 updates ([#56](https://github.com/audunru/memory-usage/issues/56)) ([6b96254](https://github.com/audunru/memory-usage/commit/6b9625472317e50ca17e56fd447b04cb14c80de5))
+* **deps:** bump actions/checkout from 4 to 5 ([#57](https://github.com/audunru/memory-usage/issues/57)) ([d20c714](https://github.com/audunru/memory-usage/commit/d20c714f81861910961d73cfb721fa6bdbca55da))
+* **deps:** bump amannn/action-semantic-pull-request from 5 to 6 ([#58](https://github.com/audunru/memory-usage/issues/58)) ([efa599f](https://github.com/audunru/memory-usage/commit/efa599fb47579b14d9f3220a424b7e0d993e6cc3))
+* **deps:** bump laravel/framework in the production-dependencies group ([#55](https://github.com/audunru/memory-usage/issues/55)) ([ee6aaaa](https://github.com/audunru/memory-usage/commit/ee6aaaa08a4521a5d3acee840ca347470767dcf9))
+* **deps:** bump laravel/framework in the production-dependencies group ([#59](https://github.com/audunru/memory-usage/issues/59)) ([2c694ca](https://github.com/audunru/memory-usage/commit/2c694caaa3e804ed262f8322ab13ea52ff56e2ea))
+* **deps:** bump the production-dependencies group with 2 updates ([#53](https://github.com/audunru/memory-usage/issues/53)) ([b53fdb2](https://github.com/audunru/memory-usage/commit/b53fdb2a51908a1bba0ca274dc343483c4d1eff3))
+
 ## [4.0.1](https://github.com/audunru/memory-usage/compare/v4.0.0...v4.0.1) (2025-06-07)
 
 
