@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.3](https://github.com/audunru/memory-usage/compare/v4.0.2...v4.0.3) (2025-10-02)
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump friendsofphp/php-cs-fixer ([#62](https://github.com/audunru/memory-usage/issues/62)) ([291d0ec](https://github.com/audunru/memory-usage/commit/291d0ec017c4c953ffae9dd0cadc58e9c07f3fff))
+* **deps:** bump laravel/framework in the production-dependencies group ([#61](https://github.com/audunru/memory-usage/issues/61)) ([fee3955](https://github.com/audunru/memory-usage/commit/fee3955f0c5fc9c2ec07ef3f053beac35284e95b))
+
 ## [4.0.2](https://github.com/audunru/memory-usage/compare/v4.0.1...v4.0.2) (2025-09-16)
 
 
