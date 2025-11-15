@@ -1,3 +1,10 @@
+## [4.0.5](https://github.com/audunru/memory-usage/compare/v4.0.4...v4.0.5) (2025-11-15)
+
+
+### Bug Fixes
+
+* force semantic release ([cccb888](https://github.com/audunru/memory-usage/commit/cccb888758d8a0e319e8cf58dfaf982f36a83965))
+
 # Changelog
 
 ## [4.0.3](https://github.com/audunru/memory-usage/compare/v4.0.2...v4.0.3) (2025-10-02)
