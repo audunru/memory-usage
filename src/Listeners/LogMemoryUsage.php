@@ -13,32 +13,32 @@ class LogMemoryUsage
     /**
      * Default paths where memory usage is ignored.
      */
-    private const DEFAULT_IGNORE_PATTERNS = [];
+    private const array DEFAULT_IGNORE_PATTERNS = [];
 
     /**
      * Default paths where memory usage logging is enabled.
      */
-    private const DEFAULT_PATTERNS = [];
+    private const array DEFAULT_PATTERNS = [];
 
     /**
      * Default log channel.
      */
-    private const DEFAULT_CHANNEL = null;
+    private const ?string DEFAULT_CHANNEL = null;
 
     /**
      * Default log level.
      */
-    private const DEFAULT_LEVEL = 'warning';
+    private const string DEFAULT_LEVEL = 'warning';
 
     /**
      * Default environments where memory usage header is added to responses.
      */
-    private const DEFAULT_ENVIRONMENTS = [];
+    private const array DEFAULT_ENVIRONMENTS = [];
 
     /**
      * Default memory usage header name.
      */
-    private const DEFAULT_HEADER_NAME = 'memory-usage';
+    private const string DEFAULT_HEADER_NAME = 'memory-usage';
 
     public function __construct(protected MemoryHelper $memoryHelper)
     {
