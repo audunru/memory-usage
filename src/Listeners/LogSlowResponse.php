@@ -12,26 +12,24 @@ class LogSlowResponse
     /**
      * Default paths where slow responses are ignored.
      */
-    private const DEFAULT_IGNORE_PATTERNS = [];
+    private const array DEFAULT_IGNORE_PATTERNS = [];
 
     /**
      * Default paths where memory usage logging is enabled.
      */
-    private const DEFAULT_PATTERNS = [];
+    private const array DEFAULT_PATTERNS = [];
 
     /**
      * Default log channel.
      */
-    private const DEFAULT_CHANNEL = null;
+    private const ?string DEFAULT_CHANNEL = null;
 
     /**
      * Default log level.
      */
-    private const DEFAULT_LEVEL = 'warning';
+    private const string DEFAULT_LEVEL = 'warning';
 
-    public function __construct(protected TimeHelper $timeHelper)
-    {
-    }
+    public function __construct(protected TimeHelper $timeHelper) {}
 
     public function handle(RequestHandled $event)
     {
