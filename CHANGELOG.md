@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/audunru/memory-usage/compare/v4.0.5...v5.0.0) (2026-03-24)
+
+
+### Features
+
+* laravel 13 support ([#85](https://github.com/audunru/memory-usage/issues/85)) ([6e71d96](https://github.com/audunru/memory-usage/commit/6e71d968c3a1a426fb73d9e4a9965b2a157defc4))
+
+
+### BREAKING CHANGES
+
+* Laravel 13 is now the minimum required version, which also means PHP 8.3 is required
+
 ## [4.0.5](https://github.com/audunru/memory-usage/compare/v4.0.4...v4.0.5) (2025-11-15)
 
 
