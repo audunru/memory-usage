@@ -29,9 +29,7 @@ class LogSlowResponse
      */
     private const string DEFAULT_LEVEL = 'warning';
 
-    public function __construct(protected TimeHelper $timeHelper)
-    {
-    }
+    public function __construct(protected TimeHelper $timeHelper) {}
 
     public function handle(RequestHandled $event)
     {

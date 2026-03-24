@@ -17,42 +17,42 @@ class MemoryUsageTest extends TestCase
 
         config([
             'memory-usage.enabled' => true,
-            'memory-usage.paths'   => [
+            'memory-usage.paths' => [
                 [
-                    'patterns'        => ['include*'],
+                    'patterns' => ['include*'],
                     'ignore_patterns' => ['include/higher*', 'include/lower*'],
-                    'limit'           => 10,
-                    'channel'         => null,
-                    'level'           => 'warning',
+                    'limit' => 10,
+                    'channel' => null,
+                    'level' => 'warning',
                 ],
                 [
-                    'patterns'        => ['include/higher'],
+                    'patterns' => ['include/higher'],
                     'ignore_patterns' => [],
-                    'limit'           => 50,
-                    'channel'         => null,
-                    'level'           => 'warning',
+                    'limit' => 50,
+                    'channel' => null,
+                    'level' => 'warning',
                 ],
                 [
-                    'patterns'        => ['include/lower'],
+                    'patterns' => ['include/lower'],
                     'ignore_patterns' => [],
-                    'limit'           => 1,
-                    'channel'         => null,
-                    'level'           => 'warning',
+                    'limit' => 1,
+                    'channel' => null,
+                    'level' => 'warning',
                 ],
                 [
-                    'patterns'        => ['include*'],
+                    'patterns' => ['include*'],
                     'ignore_patterns' => [],
-                    'limit'           => 100,
-                    'channel'         => 'slack',
-                    'level'           => 'emergency',
+                    'limit' => 100,
+                    'channel' => 'slack',
+                    'level' => 'emergency',
                 ],
                 [
-                    'patterns'        => ['header*'],
+                    'patterns' => ['header*'],
                     'ignore_patterns' => [],
-                    'limit'           => 10,
-                    'channel'         => null,
-                    'level'           => 'warning',
-                    'header'          => [
+                    'limit' => 10,
+                    'channel' => null,
+                    'level' => 'warning',
+                    'header' => [
                         'environments' => ['testing'],
                     ],
                 ],
@@ -68,7 +68,7 @@ class MemoryUsageTest extends TestCase
         });
     }
 
-    public function testItLogsWarningToDefaultChannel()
+    public function test_it_logs_warning_to_default_channel()
     {
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
@@ -97,7 +97,7 @@ class MemoryUsageTest extends TestCase
         $this->get('/include/test');
     }
 
-    public function testItLogsWarningToDefaultChannelForHigherLimitRoute()
+    public function test_it_logs_warning_to_default_channel_for_higher_limit_route()
     {
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
@@ -126,7 +126,7 @@ class MemoryUsageTest extends TestCase
         $this->get('/include/higher');
     }
 
-    public function testItLogsWarningToDefaultChannelForLowerLimitRoute()
+    public function test_it_logs_warning_to_default_channel_for_lower_limit_route()
     {
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
@@ -155,7 +155,7 @@ class MemoryUsageTest extends TestCase
         $this->get('/include/lower');
     }
 
-    public function testItLogsEmergencyToSlackChannel()
+    public function test_it_logs_emergency_to_slack_channel()
     {
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
@@ -184,21 +184,21 @@ class MemoryUsageTest extends TestCase
         $this->get('/include/test');
     }
 
-    public function testItExcludesPath()
+    public function test_it_excludes_path()
     {
         Log::shouldReceive('channel')->never();
 
         $this->get('/exclude');
     }
 
-    public function testItIgnoresPath()
+    public function test_it_ignores_path()
     {
         Log::shouldReceive('channel')->never();
 
         $this->get('/ignore');
     }
 
-    public function testItAddsHeaderToResponse()
+    public function test_it_adds_header_to_response()
     {
         $this->mock(MemoryHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getPeakUsage')
@@ -210,7 +210,7 @@ class MemoryUsageTest extends TestCase
         $response->assertHeader('memory-usage', '1');
     }
 
-    public function testItDoesNotAddHeaderToResponse()
+    public function test_it_does_not_add_header_to_response()
     {
         $response = $this->get('/no-header');
 

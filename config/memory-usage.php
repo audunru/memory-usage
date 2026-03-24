@@ -14,13 +14,13 @@ return [
     /*
      * Paths to log memory usage for.
      */
-    'paths'   => [
+    'paths' => [
         [
             /*
              * The request path, e.g. api/v1/products will be matched against
              * these patterns.
              */
-            'patterns'   => ['*'],
+            'patterns' => ['*'],
 
             /*
              * Paths to ignore. Takes precedence over the 'patterns' option.
@@ -30,12 +30,12 @@ return [
             /*
              * Peak memory usage in megabytes must be above limit before logging takes place.
              */
-            'limit'   => 100,
+            'limit' => 100,
 
             /*
              * Response time in seconds must be above limit before logging takes place.
              */
-            'slow_response_limit'   => 30.0,
+            'slow_response_limit' => 30.0,
 
             /*
              * Log using this channel. If set to null, Laravel will use the default channel
@@ -55,7 +55,7 @@ return [
              * - info
              * - debug
              */
-            'level'   => 'warning',
+            'level' => 'warning',
 
             'header' => [
                 /*

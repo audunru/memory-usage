@@ -40,9 +40,7 @@ class LogMemoryUsage
      */
     private const string DEFAULT_HEADER_NAME = 'memory-usage';
 
-    public function __construct(protected MemoryHelper $memoryHelper)
-    {
-    }
+    public function __construct(protected MemoryHelper $memoryHelper) {}
 
     public function handle(RequestHandled $event)
     {

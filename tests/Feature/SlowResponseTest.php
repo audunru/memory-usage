@@ -18,32 +18,32 @@ class SlowResponseTest extends TestCase
         config([
             'memory-usage.paths' => [
                 [
-                    'patterns'            => ['include*'],
-                    'ignore_patterns'     => ['include/higher*', 'include/lower*'],
+                    'patterns' => ['include*'],
+                    'ignore_patterns' => ['include/higher*', 'include/lower*'],
                     'slow_response_limit' => 3,
-                    'channel'             => null,
-                    'level'               => 'warning',
+                    'channel' => null,
+                    'level' => 'warning',
                 ],
                 [
-                    'patterns'            => ['include/higher'],
-                    'ignore_patterns'     => [],
+                    'patterns' => ['include/higher'],
+                    'ignore_patterns' => [],
                     'slow_response_limit' => 15,
-                    'channel'             => null,
-                    'level'               => 'warning',
+                    'channel' => null,
+                    'level' => 'warning',
                 ],
                 [
-                    'patterns'            => ['include/lower'],
-                    'ignore_patterns'     => [],
+                    'patterns' => ['include/lower'],
+                    'ignore_patterns' => [],
                     'slow_response_limit' => 1,
-                    'channel'             => null,
-                    'level'               => 'warning',
+                    'channel' => null,
+                    'level' => 'warning',
                 ],
                 [
-                    'patterns'            => ['include*'],
-                    'ignore_patterns'     => [],
+                    'patterns' => ['include*'],
+                    'ignore_patterns' => [],
                     'slow_response_limit' => 30,
-                    'channel'             => 'slack',
-                    'level'               => 'emergency',
+                    'channel' => 'slack',
+                    'level' => 'emergency',
                 ],
             ],
             'memory-usage.ignore_patterns' => [
@@ -57,7 +57,7 @@ class SlowResponseTest extends TestCase
         });
     }
 
-    public function testItLogsSlowResponseWarningToDefaultChannel()
+    public function test_it_logs_slow_response_warning_to_default_channel()
     {
         $this->mock(TimeHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getResponseTime')
@@ -85,7 +85,7 @@ class SlowResponseTest extends TestCase
         $this->get('/include/test');
     }
 
-    public function testItLogsSlowResponseWarningToDefaultChannelForHigherLimitRoute()
+    public function test_it_logs_slow_response_warning_to_default_channel_for_higher_limit_route()
     {
         $this->mock(TimeHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getResponseTime')
@@ -113,7 +113,7 @@ class SlowResponseTest extends TestCase
         $this->get('/include/higher');
     }
 
-    public function testItLogsSlowResponseWarningToDefaultChannelForLowerLimitRoute()
+    public function test_it_logs_slow_response_warning_to_default_channel_for_lower_limit_route()
     {
         $this->mock(TimeHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getResponseTime')
@@ -141,7 +141,7 @@ class SlowResponseTest extends TestCase
         $this->get('/include/lower');
     }
 
-    public function testItLogsSlowResponseEmergencyToSlackChannel()
+    public function test_it_logs_slow_response_emergency_to_slack_channel()
     {
         $this->mock(TimeHelper::class, function (MockInterface $mock) {
             $mock->shouldReceive('getResponseTime')
@@ -170,14 +170,14 @@ class SlowResponseTest extends TestCase
         $this->get('/include/test');
     }
 
-    public function testItExcludesPath()
+    public function test_it_excludes_path()
     {
         Log::shouldReceive('channel')->never();
 
         $this->get('/exclude');
     }
 
-    public function testItIgnoresPath()
+    public function test_it_ignores_path()
     {
         Log::shouldReceive('channel')->never();
 

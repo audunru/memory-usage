@@ -7,9 +7,9 @@ use audunru\MemoryUsage\Tests\TestCase;
 
 class TimeHelperTest extends TestCase
 {
-    public function testItReturnsMemoryUsage()
+    public function test_it_returns_memory_usage()
     {
-        $timeHelper = new TimeHelper();
+        $timeHelper = new TimeHelper;
 
         $result = $timeHelper->getResponseTime();
 
