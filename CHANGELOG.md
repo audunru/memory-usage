@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/audunru/memory-usage/compare/v5.0.0...v5.1.0) (2026-05-25)
+
+
+### Features
+
+* add Trivy security scan workflow ([#91](https://github.com/audunru/memory-usage/issues/91)) ([240920f](https://github.com/audunru/memory-usage/commit/240920fe6e583159b494b4663678f741d7d5024f))
+
 # [5.0.0](https://github.com/audunru/memory-usage/compare/v4.0.5...v5.0.0) (2026-03-24)
 
 
