@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/audunru/memory-usage/compare/v5.1.0...v5.1.1) (2026-06-19)
+
+
+### Bug Fixes
+
+* reset peak memory usage per matched request ([#96](https://github.com/audunru/memory-usage/issues/96)) ([2293065](https://github.com/audunru/memory-usage/commit/229306529840680c0441b6abada4c9bac68069e9))
+
 # [5.1.0](https://github.com/audunru/memory-usage/compare/v5.0.0...v5.1.0) (2026-05-25)
 
 
