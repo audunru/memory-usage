@@ -1,11 +1,13 @@
 <?php
 
-namespace audunru\MemoryUsage\Listeners;
+namespace audunru\MemoryUsage\Http\Middleware;
 
 use audunru\MemoryUsage\Helpers\TimeHelper;
-use Illuminate\Foundation\Http\Events\RequestHandled;
+use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
 class LogSlowResponse
 {
@@ -31,11 +33,19 @@ class LogSlowResponse
 
     public function __construct(protected TimeHelper $timeHelper) {}
 
-    public function handle(RequestHandled $event)
+    public function handle(Request $request, Closure $next): Response
+    {
+        return $next($request);
+    }
+
+    /**
+     * @SuppressWarnings("unused")
+     */
+    public function terminate(Request $request, Response $response): void
     {
         $ignorePatterns = config('memory-usage.ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
 
-        if ($event->request->is($ignorePatterns)) {
+        if ($request->is($ignorePatterns)) {
             return;
         }
 
@@ -46,11 +56,11 @@ class LogSlowResponse
             $ignorePaths = Arr::get($options, 'ignore_patterns', self::DEFAULT_IGNORE_PATTERNS);
             $slowResponseLimit = Arr::get($options, 'slow_response_limit');
 
-            if (! is_null($slowResponseLimit) && $responseTime > $slowResponseLimit && $event->request->is($patterns) && ! $event->request->is($ignorePaths)) {
+            if (! is_null($slowResponseLimit) && $responseTime > $slowResponseLimit && $request->is($patterns) && ! $request->is($ignorePaths)) {
                 $channel = Arr::get($options, 'channel', self::DEFAULT_CHANNEL);
                 $level = Arr::get($options, 'level', self::DEFAULT_LEVEL);
 
-                Log::channel($channel)->log($level, sprintf('Response time %01.2f s for %s is greater than limit of %01.2f s', $responseTime, $event->request->getPathInfo(), $slowResponseLimit));
+                Log::channel($channel)->log($level, sprintf('Response time %01.2f s for %s is greater than limit of %01.2f s', $responseTime, $request->getPathInfo(), $slowResponseLimit));
             }
         }
     }
