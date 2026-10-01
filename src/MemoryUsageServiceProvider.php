@@ -2,9 +2,9 @@
 
 namespace audunru\MemoryUsage;
 
-use audunru\MemoryUsage\Listeners\LogMemoryUsage;
-use audunru\MemoryUsage\Listeners\LogSlowResponse;
-use Illuminate\Foundation\Http\Events\RequestHandled;
+use audunru\MemoryUsage\Http\Middleware\LogMemoryUsage;
+use audunru\MemoryUsage\Http\Middleware\LogSlowResponse;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Events\RouteMatched;
 use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Package;
@@ -26,10 +26,10 @@ class MemoryUsageServiceProvider extends PackageServiceProvider
     {
         if (config('memory-usage.enabled')) {
             Event::listen(RouteMatched::class, fn () => memory_reset_peak_usage());
-            Event::listen(RequestHandled::class, LogMemoryUsage::class);
+            $this->app->make(Kernel::class)->pushMiddleware(LogMemoryUsage::class);
         }
         if (config('memory-usage.slow_response_enabled')) {
-            Event::listen(RequestHandled::class, LogSlowResponse::class);
+            $this->app->make(Kernel::class)->pushMiddleware(LogSlowResponse::class);
         }
     }
 }
