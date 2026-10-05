@@ -47,6 +47,10 @@ class StreamedResponseTest extends TestCase
                 echo 'streamed';
             });
         });
+
+        $router->get('/stream-download', function () {
+            return response()->download(__FILE__);
+        });
     }
 
     public function test_it_logs_memory_usage_after_response_is_streamed()
@@ -109,6 +113,18 @@ class StreamedResponseTest extends TestCase
         });
 
         $response = $this->get('/stream');
+
+        $response->assertHeaderMissing('memory-usage');
+    }
+
+    public function test_it_does_not_add_header_to_binary_file_response()
+    {
+        $this->mock(MemoryHelper::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getPeakUsage')
+                ->andReturn(1);
+        });
+
+        $response = $this->get('/stream-download');
 
         $response->assertHeaderMissing('memory-usage');
     }

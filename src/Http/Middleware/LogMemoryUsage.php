@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\StreamedJsonResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class LogMemoryUsage
@@ -56,8 +56,8 @@ class LogMemoryUsage
             return $response;
         }
 
-        // The body of a streamed response is produced after the headers are sent, so a header value would be incomplete
-        if ($response instanceof StreamedResponse || $response instanceof StreamedJsonResponse) {
+        // The body of a streamed or file response is produced after the headers are sent, so a header value would be incomplete
+        if ($response instanceof StreamedResponse || $response instanceof BinaryFileResponse) {
             return $response;
         }
 
