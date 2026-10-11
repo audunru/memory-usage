@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/audunru/memory-usage/actions/workflows/validate.yml/badge.svg)](https://github.com/audunru/memory-usage/actions/workflows/validate.yml)
 [![Coverage Status](https://coveralls.io/repos/github/audunru/memory-usage/badge.svg?branch=main)](https://coveralls.io/github/audunru/memory-usage?branch=main)
 
-Log amount of memory used during HTTP requests. The peak memory usage in megabytes will be logged right before the response is returned.
+Log amount of memory used during HTTP requests. The peak memory usage in megabytes will be logged after the response has been sent.
 
 The memory limit is configurable per request path. If you set the limit to 25 MiB for all requests, you will see something like this in your logs:
 
@@ -36,6 +36,20 @@ php artisan vendor:publish --tag=memory-usage-config
 ```
 
 Please open up the configuration file for further instructions on how to configure logging.
+
+# Long-running workers (Octane, Swoole, RoadRunner)
+
+`memory_get_peak_usage()` returns the highest memory watermark since the PHP **process** started — it never decreases. Under a traditional PHP-FPM setup this is fine: the process dies after each request. Under long-running workers (e.g. Laravel Octane with `--max-requests=500`) the same worker handles hundreds of requests, and the peak from one expensive request would stay elevated for all subsequent requests, causing false alerts.
+
+To avoid this, the package listens to Laravel's `RouteMatched` event and calls `memory_reset_peak_usage()` at the start of each matched request. The reported peak therefore reflects only the work done during that request, matching the label "maximum memory used during request".
+
+A request that matches no route (for example a 404) does not fire `RouteMatched`, so the peak is not reset. The value logged for such a request can include memory used by an earlier request in the same worker.
+
+# Streamed responses
+
+Memory usage and response time are measured by a terminable middleware, after the response has been sent. For a `StreamedResponse` or `StreamedJsonResponse`, this means the work done while the body streams is included.
+
+The `memory-usage` header is not added to streamed responses or file responses (`BinaryFileResponse`, for example `response()->download()`). The headers are sent before the body is produced, so the value would not include that work.
 
 # Development
 
